@@ -14,18 +14,18 @@ const db = firebase.firestore();
 
 const jokes = db.collection('jokes');
 
-let setJoke0 = jokes.doc('0').set({
+jokes.doc('0').set({
   text: 'I ate a clock yesterday, it was very time-consuming.'
 });
-let setJoke1 = jokes.doc('1').set({
+jokes.doc('1').set({
   text: 'Have you played the updated kids’ game? I Spy With My Little Eye... Phone.'
 });
-let setJoke2 = jokes.doc('2').set({
+jokes.doc('2').set({
   text: 'A perfectionist walked into a bar... apparently, the bar wasn’t set high enough.'
 });
 
 function App() {
-  const [joke, setJoke] = useState('I do not know any jokes...');
+  const [joke, setJoke] = useState('I do not know any jokes... try reloading me.');
   const [loaded, setLoaded] = useState(false);
   const [likes, setLikes] = useState(0);
   const [liked, setLiked] = useState(false);
