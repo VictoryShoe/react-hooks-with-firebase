@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
@@ -28,6 +28,21 @@ function App() {
   const [joke, setJoke] = useState('I do not know any jokes...');
   const [likes, setLikes] = useState(0);
   const [liked, setLiked] = useState(false);
+
+  useEffect(() => {
+    let randomNumber = String(Math.round(Math.random() * 3))
+    let getDoc = jokes.doc(randomNumber).get()
+      .then(doc => {
+        if (!doc.exists) {
+          console.log('No such document!');
+        } else {
+          setJoke(doc.data().text);
+        }
+      })
+      .catch(err => {
+        console.log('Error getting document', err);
+      });
+  });
 
   function handleClick() {
     setLikes(likes + 1);
