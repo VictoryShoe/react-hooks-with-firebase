@@ -25,7 +25,7 @@ let setJoke3 = jokes.doc('2').set({
 });
 
 function App() {
-  const [message, setMessage] = useState('Funny joke');
+  const [joke, setJoke] = useState('I do not know any jokes...');
   const [likes, setLikes] = useState(0);
   const [liked, setLiked] = useState(false);
 
@@ -53,7 +53,7 @@ function App() {
 
   return (
     <div>
-      <p>{message}</p>
+      <p>{joke}</p>
       {liked ? likesResult : voteButton }
     </div>
   );
