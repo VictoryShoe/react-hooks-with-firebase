@@ -14,13 +14,13 @@ const db = firebase.firestore();
 
 const jokes = db.collection('jokes');
 
-let setJoke1 = jokes.doc('0').set({
+let setJoke0 = jokes.doc('0').set({
   text: 'I ate a clock yesterday, it was very time-consuming.'
 });
-let setJoke2 = jokes.doc('1').set({
+let setJoke1 = jokes.doc('1').set({
   text: 'Have you played the updated kids’ game? I Spy With My Little Eye... Phone.'
 });
-let setJoke3 = jokes.doc('2').set({
+let setJoke2 = jokes.doc('2').set({
   text: 'A perfectionist walked into a bar... apparently, the bar wasn’t set high enough.'
 });
 
@@ -69,8 +69,9 @@ function App() {
   return (
     <div>
       <p>{joke}</p>
-      {liked ? likesResult : voteButton }
+      { liked ? likesResult : voteButton }
     </div>
   );
 }
+
 export default App;
