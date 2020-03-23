@@ -26,23 +26,22 @@ let setJoke2 = jokes.doc('2').set({
 
 function App() {
   const [joke, setJoke] = useState('I do not know any jokes...');
+  const [loaded, setLoaded] = useState(false);
   const [likes, setLikes] = useState(0);
   const [liked, setLiked] = useState(false);
 
   useEffect(() => {
-    let randomNumber = String(Math.round(Math.random() * 3))
-    let getDoc = jokes.doc(randomNumber).get()
-      .then(doc => {
-        if (!doc.exists) {
-          console.log('No such document!');
-        } else {
-          setJoke(doc.data().text);
-        }
-      })
-      .catch(err => {
-        console.log('Error getting document', err);
-      });
-  });
+    if (!loaded) {
+      let randomNumber = String(Math.round(Math.random() * 3))
+      jokes.doc(randomNumber).get()
+        .then(doc => {
+          if (doc.exists) {
+            setJoke(doc.data().text);
+          }
+        })
+      setLoaded(true);
+    }
+  }, [loaded]);
 
   function handleClick() {
     setLikes(likes + 1);
